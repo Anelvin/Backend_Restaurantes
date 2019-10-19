@@ -8,7 +8,7 @@ import {MongooseModule} from '@nestjs/mongoose'
   imports: [
     ProductoModule, 
     MongooseModule.forRoot('mongodb+srv://Anelvin:Maria.21@cluster0-otafm.mongodb.net/restaurantes?retryWrites=true&w=majority',
-    {useNewUrlParser:true, useUnifiedTopology:true})
+    {useNewUrlParser:true, useUnifiedTopology:true,useFindAndModify:false})
   ],
   controllers: [AppController],
   providers: [AppService],

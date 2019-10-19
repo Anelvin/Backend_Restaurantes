@@ -28,7 +28,7 @@ export class ProductoService {
         return deleteProducto;
     }
     async updateProducto(productoID:string, createProductoDTO:CreateProductoDTO):Promise<Producto>{
-        const producto= await this.productoModel.findByIdAndUpdate(productoID,createProductoDTO);
+        const producto= await this.productoModel.findByIdAndUpdate(productoID,createProductoDTO,{new:true});
         return producto;
     }
 
