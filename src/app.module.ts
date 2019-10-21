@@ -4,12 +4,13 @@ import { AppService } from './app.service';
 import { ProductoModule } from './producto/producto.module';
 import {MongooseModule} from '@nestjs/mongoose'
 import { UsuarioModule } from './usuario/usuario.module';
+import { CategoriaModule } from './categoria/categoria.module';
 
 @Module({
   imports: [
     ProductoModule, 
     MongooseModule.forRoot('mongodb+srv://Anelvin:Maria.21@cluster0-otafm.mongodb.net/restaurantes?retryWrites=true&w=majority',
-    {useNewUrlParser:true, useUnifiedTopology:true,useFindAndModify:false}), UsuarioModule
+    {useNewUrlParser:true, useUnifiedTopology:true,useFindAndModify:false}), UsuarioModule, CategoriaModule
   ],
   controllers: [AppController],
   providers: [AppService],
