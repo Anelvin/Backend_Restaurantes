@@ -2,15 +2,25 @@ import { Controller,Get, Post, Put, Delete, Res, Body, HttpStatus, Param } from 
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDTO } from './dto/usuario.dto';
 import { Usuario } from './interfaces/usuario.interface';
+import * as bcrypt from 'bcrypt';
+
 
 @Controller('usuario')
 export class UsuarioController {
 
     constructor(private usuarioService:UsuarioService){}
 
+    private saltRounds = 10;
+
+    async getHash(password:string | undefined):Promise<string>{
+        return bcrypt.hash(password, this.saltRounds);
+    }
+
     @Post('/create')
-    async createUsuario(@Res() res, @Body() createUsuarioDTO:CreateUsuarioDTO):Promise<Usuario>{
+    async createUsuario(@Res() res, @Body() createUsuarioDTO:CreateUsuarioDTO):Promise<CreateUsuarioDTO>{
+        const passwordHash = await this.getHash(createUsuarioDTO.password);
         try {
+           createUsuarioDTO.password=passwordHash;
            const usuario = await this.usuarioService.createUsuario(createUsuarioDTO);
            return res.status(HttpStatus.OK).json(usuario);
         } catch (error) {

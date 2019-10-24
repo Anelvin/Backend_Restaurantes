@@ -17,7 +17,6 @@ export class ProveedorController {
             return res.status(HttpStatus.NOT_FOUND).send('<h1>Error</h1><p>Ha ocurrido un problema al intentar crear el proveedor</p>');
         }
     } 
-    
     @Get()
     async getProveedores(@Res() res,):Promise<Proveedor[]>{
         try {
