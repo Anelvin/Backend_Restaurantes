@@ -4,6 +4,7 @@ import { UsuarioService } from './usuario.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsuarioSchema } from './schemas/usuario.schema';
 
+
 @Module({
   imports:[
     MongooseModule.forFeature([

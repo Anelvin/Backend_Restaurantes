@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateUsuarioDTO } from './dto/usuario.dto';
 import { createServer } from 'tls';
-import * as bcrypt from 'bcrypt';
+
 
 @Injectable()
 export class UsuarioService {
@@ -13,9 +13,6 @@ export class UsuarioService {
 
     constructor(@InjectModel('Usuario') private usuarioModel:Model<Usuario>){}
 
-    async getHash(password:string | undefined):Promise<string>{
-        return bcrypt.hash(password, this.saltRounds);
-    }
     async createUsuario(createUsuarioDTO:CreateUsuarioDTO):Promise<Usuario>{
         try {
             let usuario = new this.usuarioModel(createUsuarioDTO);
@@ -28,7 +25,23 @@ export class UsuarioService {
     async getUsuarioByName(nombre:string):Promise<Usuario>{
         try {
             const usuario = await this.usuarioModel.findOne({nombre:nombre});
-            return usuario;
+            if(usuario){
+                return usuario;
+            }else{
+                return null;
+            }
+        } catch (error) {
+            return error;
+        }
+    }
+    async getToken(token:string):Promise<Usuario | null>{
+        try {
+            const usuario = await this.usuarioModel.findOne({token})
+            if(!usuario){
+                return null;
+            }else{
+                return usuario;
+            }
         } catch (error) {
             return error;
         }

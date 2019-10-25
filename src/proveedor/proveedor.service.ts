@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Proveedor } from './interfaces/proveedor.interface';
 
+
 @Injectable()
 export class ProveedorService {
 

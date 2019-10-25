@@ -12,5 +12,6 @@ export const UsuarioSchema=new Schema({
     cargo:{
         type:String,
         required:true
-    }
+    },
+    token:String,
 })

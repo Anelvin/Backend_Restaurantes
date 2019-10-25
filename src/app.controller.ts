@@ -8,7 +8,6 @@ import * as bcrypt from 'bcrypt';
 @Controller()
 export class AppController {
 
-  private saltRounds = 10;
   constructor(
     private readonly appService: AppService,
     private readonly authService: AuthService,
@@ -27,6 +26,8 @@ export class AppController {
       const result = bcrypt.compareSync(req.body.password,usuario.password);
      if(result){
        let token = await this.appService.login(usuario);
+       usuario.token=token.access_token;
+       await this.usuarioService.updateUsuario(usuario._id,usuario);
        res.status(HttpStatus.OK).json(token);
      }else{
        res.status(HttpStatus.UNAUTHORIZED).json(HttpStatus.UNAUTHORIZED);
@@ -35,5 +36,4 @@ export class AppController {
       console.log(error);
     }
   }
- 
 }
