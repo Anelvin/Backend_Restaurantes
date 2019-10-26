@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constans';
+import { PedidoModule } from './pedido/pedido.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { jwtConstants } from './constans';
     }),
     ProductoModule, 
     MongooseModule.forRoot('mongodb+srv://Anelvin:Maria.21@cluster0-otafm.mongodb.net/restaurantes?retryWrites=true&w=majority',
-    {useNewUrlParser:true, useUnifiedTopology:true,useFindAndModify:false}), UsuarioModule, CategoriaModule, ProveedorModule, AuthModule, UsersModule
+    {useNewUrlParser:true, useUnifiedTopology:true,useFindAndModify:false}), UsuarioModule, CategoriaModule, ProveedorModule, AuthModule, UsersModule, PedidoModule
   ],
   controllers: [AppController],
   providers: [AppService],
