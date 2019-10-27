@@ -78,7 +78,6 @@ export class UsuarioService {
             return error;
         }
     }
-
     async findOne(username:string):Promise<Usuario | undefined>{
         return await this.usuarioModel.findOne(user => user.nombre === username);
     }

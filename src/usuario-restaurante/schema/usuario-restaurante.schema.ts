@@ -17,5 +17,6 @@ export const UsuarioRestauranteSchema = new Schema({
     restaurante:{
         type:String,
         required:true
-    }
+    },
+    token:String
 })

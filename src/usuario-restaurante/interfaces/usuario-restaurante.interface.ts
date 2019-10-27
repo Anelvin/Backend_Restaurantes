@@ -5,4 +5,5 @@ export interface UsuarioRestaurante extends Document{
     password:string;
     cargo:string;
     restaurante:string;
+    token:string
 }

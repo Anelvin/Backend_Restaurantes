@@ -3,8 +3,6 @@ import { UsuarioRestauranteService } from './usuario-restaurante.service';
 import { CreateUsuarioRestauranteDTO } from './dto/usuario-restaurante.dto';
 import { UsuarioRestaurante } from './interfaces/usuario-restaurante.interface';
 import * as bcrypt from 'bcrypt';
-import { CreateUsuarioDTO } from 'src/usuario/dto/usuario.dto';
-import { thisExpression } from '@babel/types';
 
 @Controller('usuario-restaurante')
 export class UsuarioRestauranteController {

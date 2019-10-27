@@ -11,6 +11,7 @@ import { UsuarioRestauranteSchema } from './schema/usuario-restaurante.schema';
     ]),
   ],
   controllers: [UsuarioRestauranteController],
-  providers: [UsuarioRestauranteService]
+  providers: [UsuarioRestauranteService],
+  exports:[UsuarioRestauranteService]
 })
 export class UsuarioRestauranteModule {}

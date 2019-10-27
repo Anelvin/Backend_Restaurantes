@@ -3,4 +3,5 @@ export class CreateUsuarioRestauranteDTO{
     password:string;
     cargo:string;
     restaurante:string;
+    token:string
 }

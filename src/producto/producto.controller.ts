@@ -77,7 +77,7 @@ export class ProductoController {
             console.log('hasta aqui');
             if (cabecera === usuario.token){
                 const producto = await this.productoService.updateProducto(productoID, createProductoDTO);
-                return res.status(HttpStatus.OK).json(producto)
+                return res.status(HttpStatus.OK).json(producto);
             }else{
                 return  res.status(HttpStatus.UNAUTHORIZED).send(HttpStatus.UNAUTHORIZED);
             }
