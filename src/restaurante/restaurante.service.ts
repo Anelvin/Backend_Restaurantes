@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Restaurante } from './interfaces/restaurante.interface';
 import { CreateRestauranteDTO } from './dto/restaurante.dto';
-import { CreatePlatoDTO } from './dto/plato.dto';
 import { CreateMesaDTO } from './dto/mesa.dto';
 import { CreateDespensaDTO } from './dto/despensa.dto';
 
@@ -52,15 +51,6 @@ export class RestauranteService {
     async updateRestaurante(restauranteID: string, createRestauranteDTO: CreateRestauranteDTO):Promise<Restaurante>{
         try {
             const restaurante = await this.restauranteModel.findByIdAndUpdate(restauranteID, createRestauranteDTO,{ new:true });
-            return restaurante;
-        } catch (error) {
-            return error;
-        }
-    }
-
-    async addPlato(restauranteID: string, createPlatoDTO:CreatePlatoDTO):Promise<Restaurante>{
-        try {
-            const restaurante = await this.restauranteModel.findOneAndUpdate({_id:restauranteID},{$push: {platos:createPlatoDTO}},{new:true});
             return restaurante;
         } catch (error) {
             return error;

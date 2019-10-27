@@ -2,7 +2,6 @@ import { Controller, Get, Post, Put, Delete, HttpStatus, Body, Param, Request, R
 import { Restaurante } from './interfaces/restaurante.interface';
 import { CreateRestauranteDTO } from './dto/restaurante.dto';
 import { RestauranteService } from './restaurante.service';
-import { CreatePlatoDTO } from './dto/plato.dto';
 import { CreateMesaDTO } from './dto/mesa.dto';
 import { CreateDespensaDTO } from './dto/despensa.dto';
 
@@ -61,15 +60,6 @@ export class RestauranteController {
         }
     }
 
-    @Post('/:restauranteID/plato')
-    async addPlato(@Response() res, @Param('restauranteID') restauranteID:string, @Body() createPlatoDTO:CreatePlatoDTO){
-        try {
-            const restaurante = await this.restauranteService.addPlato(restauranteID, createPlatoDTO);
-            return res.status(HttpStatus.OK).json(restaurante);
-        } catch (error) {
-            return res.status(HttpStatus.NOT_FOUND).send(HttpStatus.NOT_FOUND);                                                            
-        }
-    }
     @Post('/:restauranteID/mesa')
     async addMesa(@Response() res, @Param('restauranteID') restauranteID:string, @Body() createMesaDTO:CreateMesaDTO){
         try {
@@ -88,5 +78,4 @@ export class RestauranteController {
             return res.status(HttpStatus.NOT_FOUND).send(HttpStatus.NOT_FOUND);                                                                        
         }
     }
-
 }

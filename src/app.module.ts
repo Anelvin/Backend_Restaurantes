@@ -13,6 +13,8 @@ import { jwtConstants } from './constans';
 import { PedidoModule } from './pedido/pedido.module';
 import { UsuarioRestauranteModule } from './usuario-restaurante/usuario-restaurante.module';
 import { RestauranteModule } from './restaurante/restaurante.module';
+import { PlatoModule } from './plato/plato.module';
+import { IngredienteModule } from './ingrediente/ingrediente.module';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { RestauranteModule } from './restaurante/restaurante.module';
     }),
     ProductoModule, 
     MongooseModule.forRoot('mongodb+srv://Anelvin:Maria.21@cluster0-otafm.mongodb.net/restaurantes?retryWrites=true&w=majority',
-    {useNewUrlParser:true, useUnifiedTopology:true,useFindAndModify:false}), UsuarioModule, CategoriaModule, ProveedorModule, AuthModule, UsersModule, PedidoModule, UsuarioRestauranteModule, RestauranteModule
+    {useNewUrlParser:true, useUnifiedTopology:true,useFindAndModify:false}), UsuarioModule, CategoriaModule, ProveedorModule, AuthModule, UsersModule, PedidoModule, UsuarioRestauranteModule, RestauranteModule, PlatoModule, IngredienteModule
   ],
   controllers: [AppController],
   providers: [AppService],

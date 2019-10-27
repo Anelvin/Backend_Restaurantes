@@ -3,11 +3,6 @@ import { Schema } from 'mongoose';
 export const RestauranteSchema = new Schema({
     nombre:String,
     direccion:String,
-    platos:[
-        {
-            nombre:String
-        }
-    ],
     mesas:[
         {
             nombre:String,

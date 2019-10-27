@@ -1,8 +1,7 @@
 import { Document } from 'mongoose';
 
-export interface Restaurante extends Document{
+export interface Ingrediente extends Document{
     readonly nombre:string;
     readonly descripcion:string;
-    readonly mesas:[];
-    readonly despensa:[];
+    readonly categoria:string
 }
