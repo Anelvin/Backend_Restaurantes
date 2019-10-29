@@ -20,9 +20,9 @@ export class PlatoService {
         }
     }
 
-    async getPlatos():Promise<Plato[]>{
+    async getPlatos(restaurante:string):Promise<Plato[]>{
         try {
-            const platos = await this.platoModel.find();
+            const platos = await this.platoModel.find({restaurante:restaurante});
             return platos;
         } catch (error) {
             return error;
@@ -56,9 +56,9 @@ export class PlatoService {
         }
     }
 
-    async addIngredientes(platoID: string, createIngredienteDTO:CreateIngredienteDTO):Promise<Plato>{
+    async addIngredientes(platoID: string, ingrediente):Promise<Plato>{
         try {
-            const plato = await this.platoModel.findOneAndUpdate({_id:platoID},{$push:{ingredientes:createIngredienteDTO}},{new:true});
+            const plato = await this.platoModel.findOneAndUpdate({_id:platoID},{$push:{ingredientes:ingrediente}},{new:true});
             return plato;
         } catch (error) {
             return error;

@@ -30,10 +30,10 @@ export class RestauranteController {
         }
     }
 
-    @Get('/:restauranteID')
-    async getRestaurante(@Response() res,@Param('restauranteID') restauranteID: string):Promise<Restaurante>{
+    @Get('/:restauranteNombre')
+    async getRestaurante(@Response() res,@Param('restauranteNombre') restauranteNombre: string):Promise<Restaurante>{
         try {
-            const restaurante = await this.restauranteService.getRestaurante(restauranteID);
+            const restaurante = await this.restauranteService.getRestaurante(restauranteNombre);
             return res.status(HttpStatus.OK).json(restaurante);            
         } catch (error) {
             return res.status(HttpStatus.NOT_FOUND).send(HttpStatus.NOT_FOUND);                        
@@ -60,20 +60,22 @@ export class RestauranteController {
         }
     }
 
-    @Post('/:restauranteID/mesa')
-    async addMesa(@Response() res, @Param('restauranteID') restauranteID:string, @Body() createMesaDTO:CreateMesaDTO){
+    @Post('/mesa')
+    async addMesa(@Request() req, @Response() res){
+        const {restaurante, ...resto}=req.body;
         try {
-            const restaurante = await this.restauranteService.addMesa(restauranteID,createMesaDTO);
-            return res.status(HttpStatus.OK).json(restaurante);
+            const restauranteConsult = await this.restauranteService.addMesa(restaurante,resto);
+            return res.status(HttpStatus.OK).json(restauranteConsult);
         } catch (error) {
             return res.status(HttpStatus.NOT_FOUND).send(HttpStatus.NOT_FOUND);                                                                        
         }
     }
-    @Post('/:restauranteID/despensa')
-    async addDespensa(@Response() res, @Param('restauranteID') restauranteID:string, @Body() createDespensaDTO:CreateDespensaDTO){
-        try {
-            const restaurante = await this.restauranteService.addDespensa(restauranteID, createDespensaDTO);
-            return res.status(HttpStatus.OK).json(restaurante);
+    @Post('/despensa')
+    async addDespensa(@Request() req, @Response() res){
+        const {restaurante, ...resto} = req.body;
+       try {
+            const restauranteConsult = await this.restauranteService.addDespensa(restaurante, resto);
+            return res.status(HttpStatus.OK).json(restauranteConsult);
         } catch (error) {
             return res.status(HttpStatus.NOT_FOUND).send(HttpStatus.NOT_FOUND);                                                                        
         }

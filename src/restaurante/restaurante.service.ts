@@ -30,9 +30,9 @@ export class RestauranteService {
         }
     }
 
-    async getRestaurante(restauranteID: string): Promise<Restaurante>{
+    async getRestaurante(restauranteNombre: string): Promise<Restaurante>{
         try {
-            const restaurante = await this.restauranteModel.findById(restauranteID);
+            const restaurante = await this.restauranteModel.findOne({nombre:restauranteNombre});
             return restaurante;
         } catch (error) {
             return error;
@@ -57,19 +57,19 @@ export class RestauranteService {
         }
     }
 
-    async addMesa(restauranteID:string, createMesaDTO:CreateMesaDTO):Promise<Restaurante>{
+    async addMesa(restaurante:string, createMesaDTO:CreateMesaDTO):Promise<Restaurante>{
         try {
-            const restaurante = await this.restauranteModel.findOneAndUpdate({_id:restauranteID},{$push:{mesas:createMesaDTO}},{new:true});
-            return restaurante;
+            const restauranteConsult = await this.restauranteModel.findOneAndUpdate({nombre:restaurante},{$push:{mesas:createMesaDTO}},{new:true});
+            return restauranteConsult;
         } catch (error) {
             return error;
         }
     }
 
-    async addDespensa(restauranteID:string, createDespensaDTO:CreateDespensaDTO):Promise<Restaurante>{
+    async addDespensa(restaurante:string, createDespensaDTO:CreateDespensaDTO):Promise<Restaurante>{
         try {
-            const restaurante = await this.restauranteModel.findOneAndUpdate({_id:restauranteID},{$push:{despensa:createDespensaDTO}},{new:true});
-            return restaurante;
+            const restauranteConsult = await this.restauranteModel.findOneAndUpdate({nombre:restaurante},{$push:{despensa:createDespensaDTO}},{new:true});
+            return restauranteConsult;
         } catch (error) {
             return error;
         }

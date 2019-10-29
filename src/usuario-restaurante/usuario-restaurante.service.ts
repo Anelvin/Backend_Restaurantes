@@ -86,4 +86,26 @@ export class UsuarioRestauranteService {
             return error;
         }
     }
+    async getUsuarioByNameRestaurante(nombre:string,restaurante:string):Promise<UsuarioRestaurante>{
+        console.log(nombre);
+        console.log(restaurante);
+        try {
+            const usuario = await this.usuarioRestauranteModel.findOne({$and:[{nombre:nombre},{restaurante:restaurante}]});
+            if(usuario){
+                return usuario;
+            }else{
+                return null;
+            }
+        } catch (error) {
+            return error;
+        }
+    }
+    async updateUsuario(usuarioID:string, createUsuarioRestauranteDTO:CreateUsuarioRestauranteDTO):Promise<UsuarioRestaurante>{
+        try {
+            const usuario =  await this.usuarioRestauranteModel.findByIdAndUpdate(usuarioID,createUsuarioRestauranteDTO,{new: true});
+            return usuario;
+        } catch (error) {
+            return error;
+        }
+    }
 }

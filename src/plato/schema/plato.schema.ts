@@ -9,5 +9,6 @@ export const PlatoSchema = new Schema({
         type:String,
         required:true
     },
+    imagenURL:String,
     ingredientes:[]
 })

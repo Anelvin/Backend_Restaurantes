@@ -23,13 +23,15 @@ export class AppController {
   @Post('/login')
   async login(@Request() req, @Response() res){
     try {
-      console.log(req.body);
-      const usuario = await this.usuarioService.getUsuarioByName(req.body.usuario);
+      console.log(req.body.nombre);
+      console.log(req.body.restaurante);
+      const usuario = await this.usuarioRestauranteService.getUsuarioByNameRestaurante(req.body.nombre, req.body.restaurante);
+      console.log(usuario);
       const result = bcrypt.compareSync(req.body.password,usuario.password);
      if(result){
        let token = await this.appService.login(usuario);
        usuario.token=token.access_token;
-       await this.usuarioService.updateUsuario(usuario._id,usuario);
+       await this.usuarioRestauranteService.updateUsuario(usuario._id,usuario);
        return res.status(HttpStatus.OK).json(token);
      }else{
        return res.status(HttpStatus.UNAUTHORIZED).json(HttpStatus.UNAUTHORIZED);
@@ -41,6 +43,7 @@ export class AppController {
 
   @Post('/restaurante/login')
   async restauranteLogin(@Request() req, @Response() res){
+    console.log(req.body);
     try {
       const usuario = await this.usuarioRestauranteService.getUsuarioByName(req.body.usuario);
       if(usuario && req.body.restaurante === usuario.restaurante){

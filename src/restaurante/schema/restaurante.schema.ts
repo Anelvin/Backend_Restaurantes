@@ -9,13 +9,15 @@ export const RestauranteSchema = new Schema({
             reservada:{
                 type:Boolean,
                 default:false
-            }
+            },
+            cliente:String
         }
     ],
     despensa:[
         {
             producto:String,
-            cantidad:Number
+            cantidad:Number,
+            imagenURL:String
         }
     ]
 })

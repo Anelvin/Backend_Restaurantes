@@ -22,15 +22,8 @@ export class ProductoController {
     @Get()
     async getProductos(@Req() req,@Res() res){
         try {
-            const cabecera = req.headers['autorization'];
-            const usuario = await this.usuarioService.getToken(cabecera);
-            console.log('hasta aqui');
-            if (cabecera === usuario.token){
-                const productos = await this.productoService.getProductos();
-                return res.status(HttpStatus.OK).json(productos);
-            }else{
-                return  res.status(HttpStatus.UNAUTHORIZED).send(HttpStatus.UNAUTHORIZED);
-            }
+            const productos = await this.productoService.getProductos();
+            return res.status(HttpStatus.OK).json(productos);
         } catch (error) {
             return res.status(HttpStatus.NOT_FOUND).send(HttpStatus.NOT_FOUND);
         }
